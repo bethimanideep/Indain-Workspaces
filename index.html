@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github OAuth</title>
+</head>
+<body>
+    <a href="https://github.com/login/oauth/authorize?client_id=Ov23lirRJ2EOUFu1keae&scope=user:email"><button>Continue with GITHUB</button></a>
+    <a href="http://localhost:8080/auth/google"><button>Continue with GOOGLE</button></a>
+    <a href="http://localhost:8080/auth/facebook"><button>Continue with FACEBOOK</button></a>
+    <button id="id">Continue with FACEBOOK</button>
+</body>
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        document.getElementById('id').addEventListener('click',()=>{
+
+            fetch('http://localhost:8080/c')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Ensure your server responds with JSON
+        })
+        .then(data => {
+            console.log('Data fetched from server:', data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+        })
+        // // Connect to the Socket.IO server
+        // const socket = io('http://localhost:8080');
+
+    </script>
+
+</html>
