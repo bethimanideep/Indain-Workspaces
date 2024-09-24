@@ -52,6 +52,7 @@ app.get('/', (req, res) => {
   res.send("user data added to cookie")
 });
 app.get('/c', (req, res) => {
+  console.log(req.cookies);
   
   res.send(req.cookies); 
 });
@@ -69,7 +70,7 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT || 8080, async () => {
   try {
     console.log(`Server is running on http://localhost:${process.env.PORT || 8080}`);
-    // await mongoose.connect(`${process.env.MONGO_URI}`);
+    await mongoose.connect(`${process.env.MONGO_URI}`);
     console.log('Connected to MongoDB');
   } catch (error) {
     console.log(error);

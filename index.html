@@ -16,19 +16,15 @@
     <script>
         document.getElementById('id').addEventListener('click',()=>{
 
-            fetch('http://localhost:8080/c')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // Ensure your server responds with JSON
-        })
-        .then(data => {
-            console.log('Data fetched from server:', data);
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
+            // Trigger OAuth flow and set cookie
+fetch('http://localhost:8080/c', {
+  method: 'GET',
+  credentials: 'include'  // Include cookies in the request
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+
         })
         // // Connect to the Socket.IO server
         // const socket = io('http://localhost:8080');
